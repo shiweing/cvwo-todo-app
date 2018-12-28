@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>New Todo</title>
+  </head>
+  <body>
+    <h1>Create Todo</h1>
+    <%= form_for(@todo) do |f| %>
+      Todo:<%= f.text_field :item %><br/>
+      Category: <%= f.text_field :category %><br/>
+      <%= f.submit %>
+    <% end %>
+  </body>
+</html>
+

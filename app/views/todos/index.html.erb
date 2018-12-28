@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    </head>
+    <body>
+        <h1>TODO List</h1>
+        
+        <% [:notice].each do |key| %>
+            <% if flash[key] %>
+            <div class="<%= key %>" id="flash">
+                <%= flash[key] %>
+            </div>
+            <% end %>
+        <% end %>
+
+        <% @todos.each do |todo|%>
+            <ul>
+                <li>
+                    <span class="todo_items"><%= todo.item%></span> 
+                    <button><%= link_to "Edit", edit_todo_path(todo.id)%></button>
+                    <button><%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                </li>
+            </ul>
+        <%end%>
+
+        <button><%= link_to "+", new_todo_path %></button>
+    </body>
+
+    <script type="text/javascript">
+        $("span.todo_items").on("click",function() {
+            var val=this.innerText
+            console.log(val)
+            this.parent.innerHTML = "<input type='text' value="+val+">"
+        });
+    </script>
+</html>
+
+
