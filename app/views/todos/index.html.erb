@@ -1,38 +1,37 @@
-<html>
-    <head>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    </head>
-    <body>
-        <h1>TODO List</h1>
-        
-        <% [:notice].each do |key| %>
-            <% if flash[key] %>
-            <div class="<%= key %>" id="flash">
-                <%= flash[key] %>
-            </div>
-            <% end %>
-        <% end %>
+<div calss="todo-wrapper">
+    <h1>TODOs</h1>
 
-        <% @todos.each do |todo|%>
-            <ul>
-                <li>
-                    <span class="todo_items"><%= todo.item%></span> 
-                    <button><%= link_to "Edit", edit_todo_path(todo.id)%></button>
-                    <button><%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: 'Are you sure?' } %></button>
-                </li>
-            </ul>
-        <%end%>
+    <% flash.each do |key, msg| %>
+        <%= content_tag :div, msg, class: "flash", id: key %>
+    <% end %>
 
-        <button><%= link_to "+", new_todo_path %></button>
-    </body>
+    <% @todos.each do |todo|%>
+        <ul>
+            <li>
+                <span class="todo_items"><%= todo.item%></span> 
+                <button><%= link_to "Edit", edit_todo_path(todo.id)%></button>
+                <button><%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+            </li>
+        </ul>
+    <%end%>
 
-    <script type="text/javascript">
-        $("span.todo_items").on("click",function() {
-            var val=this.innerText
-            console.log(val)
-            this.parent.innerHTML = "<input type='text' value="+val+">"
-        });
-    </script>
-</html>
+    <div class="create-form">
+        <%= render "todos/form" %>
+    </div>
+</div>
+
+<div class="cat-wrapper">
+    <h3>Categories</h3>
+
+    <% @categories.each do |cat|%>
+        <ul>
+            <li>
+                <span class="cat"><%= link_to cat.name, category_path(cat) %></span> 
+                <button><%= link_to "Edit", edit_category_path(cat)%></button>
+                <button><%= link_to "Delete", category_path(cat), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+            </li>
+        </ul>
+    <%end%>
+</div>
 
 
