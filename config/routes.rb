@@ -9,7 +9,13 @@ Rails.application.routes.draw do
       get 'todos', to: 'todos#category_todo', as: :show_todos
   end
   
-  resources :todos
+  resources :todos do
+    member do
+      patch :complete
+    end
+  end
+
+  # patch '/todos/:id' => 'todos#complete', as: "complete"
   
   # post 'todos', to: 'todos#create_todo', as: :create_todo
 

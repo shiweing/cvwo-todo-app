@@ -1,8 +1,13 @@
-
 <ul>
-    <li class="todos">
-    <%= todo.item%> 
-    <button><%= link_to "Edit", edit_todo_path(todo.id)%></button>
-    <button><%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+    <% if todo.completed? %>
+    <li class="todo todo-completed">
+    <% else %>
+    <li class="todo">
+    <% end %>
+    <span><%= todo.item%></span>
+    <span><%= todo.description%></span>
+    <%= link_to "Edit", edit_todo_path(todo.id)%>
+    <%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to "Mark as Complete", complete_todo_path(todo), method: :patch %>
     </li>
 </ul>

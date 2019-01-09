@@ -1,7 +1,7 @@
 <ul>
-    <li class="todos">
-    <%= todo.item%> 
-    <button><%= link_to "Edit", edit_todo_path(todo.id)%></button>
-    <button><%= link_to "Delete", category_todo_path(todo), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+    <li>
+        <span class="cat"><%= link_to category.name, category_path(category) %></span> 
+        <button><%= link_to "Edit", edit_category_path(category)%></button>
+        <button><%= link_to "Delete", category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></button>
     </li>
 </ul>

@@ -47,7 +47,16 @@ class TodosController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
-  
+  def complete
+    @todo = Todo.find_by(params[:id])
+    
+    if @todo.completed_at.blank? 
+      @todo.update_attribute(:completed_at, Time.now)
+    else
+      @todo.update_attribute(:completed_at, nil)
+    end
+    redirect_back fallback_location: root_path, notice: "Todo item completed"
+  end
   
   private
   # def set_category
@@ -59,7 +68,7 @@ class TodosController < ApplicationController
   # end
 
   def todo_params
-    params.require(:todo).permit(:item, :category_id)
+    params.require(:todo).permit(:item, :descrption, :category_id, :completed_at)
   end
 
 end

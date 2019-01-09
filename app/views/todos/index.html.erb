@@ -5,17 +5,9 @@
         <%= content_tag :div, msg, class: "flash", id: key %>
     <% end %>
 
-    <% @todos.each do |todo|%>
-        <ul>
-            <li>
-                <span class="todo_items"><%= todo.item%></span> 
-                <button><%= link_to "Edit", edit_todo_path(todo.id)%></button>
-                <button><%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: 'Are you sure?' } %></button>
-            </li>
-        </ul>
-    <%end%>
+    <%= render partial: "todo", collection: @todos %>
 
-    <div class="create-form">
+    <div class="create-todo-form">
         <%= render "todos/form" %>
     </div>
 </div>
@@ -23,15 +15,8 @@
 <div class="cat-wrapper">
     <h3>Categories</h3>
 
-    <% @categories.each do |cat|%>
-        <ul>
-            <li>
-                <span class="cat"><%= link_to cat.name, category_path(cat) %></span> 
-                <button><%= link_to "Edit", edit_category_path(cat)%></button>
-                <button><%= link_to "Delete", category_path(cat), method: :delete, data: { confirm: 'Are you sure?' } %></button>
-            </li>
-        </ul>
-    <%end%>
+    <%= render partial: "categories/category", collection: @categories %>
+
 </div>
 
 
