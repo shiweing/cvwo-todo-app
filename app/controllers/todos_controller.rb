@@ -4,8 +4,9 @@ class TodosController < ApplicationController
 
   def index
     @todos = Todo.all
-    @categories = Category.all
     @todo = Todo.new
+    @categories = Category.all
+    @category_new = Category.new
   end
 
   def new
@@ -14,12 +15,16 @@ class TodosController < ApplicationController
   end
 
   def create
-    @category = Category.find(todo_params[:category_id])
-    @todo = @category.todos.create(todo_params)
-    if @todo.save
-      flash[:success] = "Todo item was created."
+    if(todo_params[:item].blank? && todo_params[:description].blank?)
+      flash[:error] = "Please enter the todo item."
     else
-      flash[:error] = "Todo item could not be created."
+      @category = Category.find(todo_params[:category_id])
+      @todo = @category.todos.create(todo_params)
+      if @todo.save
+        flash[:success] = "Todo item was created."
+      else
+        flash[:error] = "Todo item could not be created."
+      end
     end
     
     redirect_back fallback_location: root_path
@@ -68,7 +73,7 @@ class TodosController < ApplicationController
   # end
 
   def todo_params
-    params.require(:todo).permit(:item, :descrption, :category_id, :completed_at)
+    params.require(:todo).permit(:item, :description, :category_id, :completed_at)
   end
 
 end

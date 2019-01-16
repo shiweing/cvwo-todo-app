@@ -8,16 +8,10 @@
   <%= link_to 'Back', category_path %>
 </p>
 
-<% flash.each do |key, msg| %>
-    <%= content_tag :div, msg, class: "flash", id: key %>
-<% end %>
-
+<%= render "layouts/flash" %>
+<%= render "todos/todo" %>
 
 <div id="todos_wrapper">
-  <%= render(@category.todos) || 'No todos in '+@category.name %>
-  <div class="create-form">
-    <%= render "todos/form" %>
-  </div>
 </div>
 
 

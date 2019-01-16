@@ -1,13 +1,21 @@
-<ul>
-    <% if todo.completed? %>
-    <li class="todo todo-completed">
-    <% else %>
-    <li class="todo">
+
+<div class="card-columns">
+    <% @todos.each do |todo| %>
+        <% if todo.completed? %>
+        <div class="todo todo-completed card">
+        <% else %>
+        <div class="todo card">
+        <% end %>
+            <div class="card-header"><%= todo.item%></div>
+            <div class="card-body">
+                <p class="card-text"><%= todo.description%></p>
+                <div class="todo_links">
+                <%= link_to "Edit", edit_todo_path(todo.id), class: "card-link" %>
+                <%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: 'Are you sure to delete?' }, class: "card-link" %>
+                <%= link_to "Complete", complete_todo_path(todo), method: :patch, class: "card-link" %>
+                </div>
+            </div>
+        </div>
     <% end %>
-    <span><%= todo.item%></span>
-    <span><%= todo.description%></span>
-    <%= link_to "Edit", edit_todo_path(todo.id)%>
-    <%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%= link_to "Mark as Complete", complete_todo_path(todo), method: :patch %>
-    </li>
-</ul>
+    <%= render "todos/form" %>
+</div>

@@ -1,0 +1,7 @@
+<% flash.each do |key, msg| %>
+    <% if key.eql? "error" %>
+    <%= content_tag :div, msg, class: "flash alert alert-danger", id: key %>
+    <% else %>
+    <%= content_tag :div, msg, class: "flash alert alert-success", id: key %>
+    <% end %>
+<% end %>

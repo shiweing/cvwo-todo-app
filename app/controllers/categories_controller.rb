@@ -2,16 +2,11 @@ class CategoriesController < ApplicationController
     # before_action :set_category, only: [:show, :edit, :update, :destroy]
     # before_action :set_category, only: [:show]
 
-  # GET /categories
-  # GET /categories.json
-  def index
-    @categories = Category.all
-  end
-
   # GET /categories/1
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
+    @category_new = Category.new
     @todo = Todo.new
   end
 
@@ -27,17 +22,18 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(category_params)
-
-    respond_to do |format|
+    if(category_params[:name].blank?)
+      flash[:error] = "Please enter the category title."
+    else
+      @category = Category.new(category_params)
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
+        flash[:success] = "Category was created."
       else
-        format.html { render :new }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        flash[:error] = "Category could not be created."
       end
     end
+
+    redirect_back fallback_location: root_path
   end
 
   # PATCH/PUT /categories/1
@@ -72,6 +68,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:title, :description)
+      params.require(:category).permit(:name)
     end
 end

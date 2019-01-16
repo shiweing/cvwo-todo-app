@@ -1,7 +1,18 @@
-<%= form_for @todo do |f| %>
-    Todo: <%= f.text_field :item, placeholder: "New Todo" %>
-    Category: <%= f.select(:category_id, 
-        options_for_select(Category.all.map{|c|[c.name, c.id]}, 
-        selected: @category.blank? ? 1 : @category.id)) %>
-    <%= f.submit "Create Todo" %>
+<%= form_for(@todo, html: {class: "todo-form card bg-primary text-white", autocomplete: "off"}) do |f| %>
+    <div class="card-header">
+        <div class="form-group"><%= f.text_field :item, placeholder: "New Todo", class: 'form-control' %></div>
+    </div>
+    <div class="card-body">
+        <div class="form-group"><%= f.text_area :description, placeholder: "Item Description", class: 'form-control', rows: '4' %></div>
+        <div class="form-group input-group category-select">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="category-select">Category</label>
+            </div>
+            <%= f.select :category_id, options_for_select(Category.all.map{|c|[c.name, c.id]}, 
+        selected: @category.blank? ? 1 : @category.id), {}, {:id => 'category-select', :class => 'form-control'} %>
+        </div>
+    </div>
+    <div class="card-footer">
+    <%= f.submit "+", class: 'submit-btn btn btn-light btn-block' %>
+    </div>
 <% end %>
