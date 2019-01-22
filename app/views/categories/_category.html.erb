@@ -1,15 +1,21 @@
-
-<ul class="list-group">
+<h4>Categories</h4>
+<ul class="list-group list-group-flush">
+    <li class="category list-group-item justify-content-between">
+        <%= link_to 'Show All', todos_path, id: 'all-todo' %>
+    </li>
     <% @categories.each do |category| %>
         <% if category == @category %>
-        <li class="list-group-item d-flex justify-content-between align-items-center active">
+        <li class="category list-group-item justify-content-between active" id="li-cat-<%= category.id %>">
         <% else %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
+        <li class="category list-group-item justify-content-between"  id="li-cat-<%= category.id %>">
         <% end %>
-            <%= link_to category.name, category_path(category) %>
-            <span class="badge badge-primary badge-pill"><%= link_to "Edit", edit_category_path(category)%></span>
-            <span class="badge badge-primary badge-pill"><%= link_to "Delete", category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></span>
+            <div id="cat-<%= category.id %>">
+                <%= link_to category.name, category_path(category), class: "cat-name" %>
+                <span class="badge badge-primary badge-pill"><%= link_to "Edit", edit_category_path(category), remote: true, class: "cat-link" %></span>
+                <span class="badge badge-primary badge-pill"><%= link_to "Delete", category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: "cat-link" %></span>
+            </div>
+            <div id="edit-cat-<%= category.id %>">
         </li>
     <% end %>
-    <li class="list-group-item d-flex justify-content-between align-items-center"><%= render "categories/form" %></li>
+    <li class="category list-group-item justify-content-between"><%= render "categories/form" %></li>
 </ul>

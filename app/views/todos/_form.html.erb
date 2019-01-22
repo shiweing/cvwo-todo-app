@@ -1,4 +1,4 @@
-<%= form_for(@todo, html: {class: "todo-form card bg-primary text-white", autocomplete: "off"}) do |f| %>
+<%= form_for(@todo_new, html: {class: "todo-form card text-white", autocomplete: "off"}) do |f| %>
     <div class="card-header">
         <div class="form-group"><%= f.text_field :item, placeholder: "New Todo", class: 'form-control' %></div>
     </div>

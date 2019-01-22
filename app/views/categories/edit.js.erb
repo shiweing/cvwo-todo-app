@@ -1,0 +1,7 @@
+$("#cat-<%= @category.id %>").hide();
+$("#edit-cat-<%= @category.id %>").html("<%= j render 'edit' %>");
+
+$(".edit-cat-name").blur(function() {
+    $("#edit-cat-<%= @category.id %>").html("");
+    $("#cat-<%= @category.id %>").show();
+});

@@ -13,13 +13,54 @@
  *= require_tree .
  *= require_self
  */
+ @import url('https://fonts.googleapis.com/css?family=Capriola');
+body {
+    font-family: 'Capriola';
+    color: #011f4b;
+}
+.todo {
+    background-color: #4b86b4;
+    color: white;
 
-.todo{
-    .card-link{
-        display: inline;
+    .card-cat {
+        color: #011f4b;
+        font-family: 'Capriola';
+        font-size: 12px;
+        font-style: italic;
+
+        &:hover {
+            background-color: transparent;
+            text-decoration: underline;
+        }
+    }
+    .todo-links.row{
+        padding: 1.25rem;
+    }
+    .card-link {
+        color: white;
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        
+        &:hover{
+            color: #6497b1;
+            background-color: #ffffff;
+            border-radius: 10%;
+        }
     }
 }
+.todo-completed {
+    text-decoration: line-through;
+    background-color: #6e7f80;
+
+    .todo-links {
+        display: inline-block;
+    }
+}
+
 .todo-form {
+    background-color: #005b96;
+
     .form-group {
         margin: 0;
     }
@@ -50,25 +91,109 @@
         padding-right: 0.2em;
         font-size: 13px;
         background-color: white;
-        color: #007bff;
+        color: #005b96;
         border: 1px solid #ffffff;
     }
     #category-select {
         padding-left: 0.2em;
         border: 1px solid #ffffff;
+
+        option {
+            border-radius: 10%;
+            background-color: #005b96;
+
+            &:hover {
+                color: #005b96;
+                background-color: white;
+            }
+        }
     }
     .submit-btn {
         font-size-adjust: 50%;
         font-weight: bold;
-        color: #007bff;
+        color: #005b96;
     }
     .submit-btn:hover {
-        background-color: #007bff;
+        background-color: #005b96;
         color: white;
     }
 }
+.cat-wrapper {
+    #all-todo {
+        color: #011f4b;
+
+        &:hover {
+            background-color: transparent;
+            text-decoration: underline;
+        }
+    }
+}
+.category {
+    border-color: #adcbe3;
+    font-family: 'Capriola';
+    
+    .cat-name {
+        color: #011f4b;
+
+        &:hover {
+            background-color: transparent;
+            text-decoration: underline;
+        }
+    }
+    .badge {
+        background-color: #011f4b;
+        .cat-link {
+            color: white;
+        }
+    }
+}
+.category.active{
+    background-color: #e7eff6;
+    border-color: #adcbe3;
+}
 .cat-form {
-    .form-control::placeholder {
-        font-size: 13px
+    .form-control{
+        border-color: #011f4b;
+        color: #011f4b;
+
+        &::placeholder {
+            font-size: 13px
+        }
+    }
+    .submit-btn {
+        border-color: #011f4b;
+
+        &:hover {
+            background-color: #011f4b;
+            color: white;
+        }
+    }
+}
+.cat-edit {
+    .edit-form {
+        display: inline-block;
+    }
+    .edit-cat-name {
+        outline: none;
+        padding: 0;
+        font-size: inherit;
+        height: 13px;
+        max-width: 40%;
+        margin: 0;
+        background-color: transparent;
+        border: 0;
+        display: inline-block;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    .cat-link {
+        font-size: inherit;
+        font-weight: bold;
+        display: inline;
+        padding: 0;
+        background-color: transparent;
+        border: 0;
     }
 }

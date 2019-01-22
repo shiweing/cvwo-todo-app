@@ -15,10 +15,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # patch '/todos/:id' => 'todos#complete', as: "complete"
-  
-  # post 'todos', to: 'todos#create_todo', as: :create_todo
-
   root to: 'todos#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

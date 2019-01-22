@@ -1,17 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="todo-wrapper col-9">
+            <h2>
+              <strong>Category:</strong>
+              <%= @category.name %><br/>
+            </h2>
 
-<h1>TODOs</h1>
+            <%= render "layouts/flash" %>
+            <%= render "todos/todo" %>
+        </div>
 
-<p>
-  <strong>Category:</strong>
-  <%= @category.name %><br/>
-  <%= link_to 'Edit', edit_category_path(@category) %> |
-  <%= link_to 'Back', category_path %>
-</p>
-
-<%= render "layouts/flash" %>
-<%= render "todos/todo" %>
-
-<div id="todos_wrapper">
+        <div class="cat-wrapper col-3">
+            <%= render partial: "categories/category" %>
+        </div>
+    </div>
 </div>
 
 
