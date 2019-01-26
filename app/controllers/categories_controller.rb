@@ -40,11 +40,16 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
-    respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Todo list was successfully destroyed.' }
-      format.json { head :no_content }
+    @category = Category.find(params[:id])
+    @category.todos.update_all(category_id: 1);
+    
+    if @category.destroy
+      flash[:success] = "Category was deleted."
+    else
+      flash[:error] = "Category could not be deleted."
     end
+
+    redirect_back fallback_location: root_path
   end
 
   private

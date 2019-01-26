@@ -1,6 +1,13 @@
 $("#cat-<%= @category.id %>").hide();
 $("#edit-cat-<%= @category.id %>").html("<%= j render 'edit' %>");
+if ($(".cat-edit")[0]){
+    $(".edit-cat-name").focus();
+};
 
+$(".edit-cat-link").mousedown(function(e) {
+    e.preventDefault();
+    $(this).closest(".cat-edit").submit();
+});
 $(".edit-cat-name").blur(function() {
     $("#edit-cat-<%= @category.id %>").html("");
     $("#cat-<%= @category.id %>").show();

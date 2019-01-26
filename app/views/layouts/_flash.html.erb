@@ -1,7 +1,12 @@
 <% flash.each do |key, msg| %>
     <% if key.eql? "error" %>
-    <%= content_tag :div, msg, class: "flash alert alert-danger", id: key %>
+    <div class="flash alert alert-danger" id="<%= key %>">
     <% else %>
-    <%= content_tag :div, msg, class: "flash alert alert-success", id: key %>
+    <div class="flash alert alert-success" id="<%= key %>">
+        <%= msg %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <% end %>
 <% end %>

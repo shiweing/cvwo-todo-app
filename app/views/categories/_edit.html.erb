@@ -1,7 +1,7 @@
 <div class="cat-edit">
   <%= form_for @category, remote: true, html: {class: "edit-form", autocomplete: "off"} do |f| %>
     <%= f.text_field :name, class: "form-control edit-cat-name" %>
-    <span class="badge badge-primary badge-pill"><%= f.submit "Edit", class: "cat-link" %></span>
+    <span class="badge badge-primary badge-pill"><%= f.submit "Edit", class: "cat-link edit-cat-link" %></span>
     <span class="badge badge-primary badge-pill"><%= link_to "Delete", category_path(@category), method: :delete, data: { confirm: 'Are you sure?' }, class: "cat-link" %></span>
   <% end %>
 </div>

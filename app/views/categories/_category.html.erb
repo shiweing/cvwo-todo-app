@@ -12,7 +12,7 @@
             <div id="cat-<%= category.id %>">
                 <%= link_to category.name, category_path(category), class: "cat-name" %>
                 <span class="badge badge-primary badge-pill"><%= link_to "Edit", edit_category_path(category), remote: true, class: "cat-link" %></span>
-                <span class="badge badge-primary badge-pill"><%= link_to "Delete", category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: "cat-link" %></span>
+                <span class="badge badge-primary badge-pill"><%= link_to "Delete", category_path(category), method: :delete, data: { confirm: 'Are you sureto delete category?' }, class: "cat-link" %></span>
             </div>
             <div id="edit-cat-<%= category.id %>">
         </li>

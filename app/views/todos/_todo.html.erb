@@ -12,7 +12,7 @@
             </div>
             <div class="todo-links card-footer">
                 <%= link_to "Edit", edit_todo_path(todo.id), class: "card-link" %> | 
-                <%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: 'Are you sure to delete?' }, class: "card-link" %> | 
+                <%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: 'Are you sure to delete TODO item?' }, class: "card-link" %> | 
                 <%= link_to todo.completed? ? "Incomplete" : "Complete", complete_todo_path(todo), method: :patch, class: "card-link" %>
             </div>
         </div>
